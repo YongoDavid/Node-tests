@@ -1,7 +1,11 @@
 const http = require('http')
 const fs = require('fs')
+const _ = require('lodash')
 const server = http.createServer((req , res) => {
-    // console.log(req.url , req.method);
+    
+    // lodash 
+    const num = _.random(0,20);
+    console.log(num)
 
     // set content type header 
     res.setHeader('content-Type' , 'text/html')
@@ -17,7 +21,7 @@ const server = http.createServer((req , res) => {
             path += 'about.html';
             res.statusCode = 200;
             break;
-        case '/about-me':
+        case '/about-us':
             res.statusCode = 301;
             res.setHeader('Location' , '/about')
             res.end()
@@ -43,3 +47,4 @@ const server = http.createServer((req , res) => {
 server.listen(3000 ,'localhost' , () =>{
     console.log('listening for requests on port 3000')
 });
+
