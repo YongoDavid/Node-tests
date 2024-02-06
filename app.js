@@ -12,11 +12,11 @@ app.listen(3000);
     // getting response in express 
 app.get('/' , (req , res ) => {
     // res.send('home page</p>')
-    res.sendFile('./index.html' , {root: __dirname}); 
+    res.sendFile('/views/index.html' , {root: __dirname}); 
 })
 app.get('/about' , (req , res ) => {
     // res.send('about page</p>')
-    res.sendFile('./about.html' , {root: __dirname}); 
+    res.sendFile('views/about.html' , {root: __dirname}); 
 })
 
 // REDIRECTS IN EXPRESS
@@ -26,5 +26,5 @@ app.get('/about-me' , (req , res)=> {
 
 // 404 page  
 app.use((req , res) => {
-    res.status(400).sendFile('/404.html' , {root: __dirname})
+    res.status(400).sendFile('views/404.html' , {root: __dirname})
 });
