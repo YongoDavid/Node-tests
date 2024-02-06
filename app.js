@@ -17,11 +17,11 @@ app.get('/about' , (req , res ) => {
 })
 
 // REDIRECTS IN EXPRESS
-app.get('/about' , (req , res)=> {
-    res.redirect('about-me')
+app.get('/about-me' , (req , res)=> {
+    res.redirect('about')
 });
 
 // 404 page  
 app.use((req , res) => {
-    res.sendFile('../part2/404.html' , {root: __dirname})
+    res.status(400).sendFile('/404.html' , {root: __dirname})
 });
