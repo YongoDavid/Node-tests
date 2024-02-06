@@ -3,23 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Ninja</title>
+    <title>Blog Ninja | <%= title %></title>
 </head>
 <body>
-    <nav>
-        <divn class="site-title">
-            <a href="/">Blog Ninja</a>
-            <p>A new Ninja site</p>
-        </div>
-        <ul>
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blogs</a></li>
-        </ul>
-    </nav>
+    <!-- import your partials into view  -->
+    <%- include('./partials/nav.ejs') %>
 
     <div class="not-found content">
         <h1>OOPS!! , page not found</h1>
     </div>
+
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>
