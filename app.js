@@ -31,6 +31,6 @@ app.get('/blogs/create' , (req , res)=> {
 //     res.redirect('about')
 // }); 
 app.use((req,res)=>{
-    res.status(404).render('404' , {title : "Error page"})
+    res.status(404).render('404' , {title : "Error"})
 }); 
 
