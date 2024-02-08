@@ -31,6 +31,11 @@ app.use(express.static('public'));
     // getting response in express 
 app.use(morgan('dev'));
 
+app.use((req,res,next)=>{
+    console.log('Checkking routes');
+    next();
+})
+
     app.get('/' , (req , res ) => {
 
     // using ejs to export coontent dynamically 
