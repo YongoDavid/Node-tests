@@ -1,17 +1,18 @@
 const express = require('express');
-const morgan = require('morgan')
-
+const morgan = require('morgan');
+// connecting to mongoDB using mongoose 
+const mongoose = require('mongoose');
 // express app 
 const app = express();
 
-// mongodb database config 
-const dbURI = 'mongodb+srv://nodeninja:<password>@cluster0.zs6k5gt.mongodb.net/'
+// mongodb connect config 
+const dbURI = 'mongodb+srv://nodeninja:nodeninja12345@cluster0.zs6k5gt.mongodb.net/'
+mongoose.connect(dbURI)
+    .then((result)=> app.listen(3000))
+    .then((err) => console.log(err));
 
 // register view engine 
-app.set('view engine' , 'ejs')
-
-// listen for requesst 
-app.listen(3000);
+app.set('view engine' , 'ejs');
 
 // MIDDLEWARE & STATIC FILES 
 app.use(express.static('public'));
