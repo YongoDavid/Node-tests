@@ -9,7 +9,7 @@ const app = express();
 const dbURI = 'mongodb+srv://nodeninja:nodeninja12345@cluster0.zs6k5gt.mongodb.net/'
 mongoose.connect(dbURI)
     .then((result)=> app.listen(3000))
-    .then((err) => console.log(err));
+    .catch((err) => console.log(err));
 
 // register view engine 
 app.set('view engine' , 'ejs');
