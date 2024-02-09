@@ -19,6 +19,7 @@ const blogSchema = new Schema({
 }, {timestamps: true});
 
 // This is how you create your model around the schema 
-const Blog = mongoose.model('Blog' , blogSchema);
+const Blog = mongoose.model('Blog' , blogSchema)
 // Export the model to be able to use anyhere is your code 
-module.exports(Blog);
+
+module.exports = Blog;

@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 // express app 
 const app = express();
+// importing model 
+const Blog = require('./models/blogs')
 
 // mongodb connect config 
 const dbURI = 'mongodb+srv://nodeninja:nodeninja12345@cluster0.zs6k5gt.mongodb.net/'
@@ -13,30 +15,53 @@ mongoose.connect(dbURI)
 
 // register view engine 
 app.set('view engine' , 'ejs');
-
 // MIDDLEWARE & STATIC FILES 
 app.use(express.static('public'));
-
-
-// MIDDLEARES 
-
-// app.use((req,res , next)=> {
-//     console.log('new request made');
-//     console.log('host: ' , req.hostname);
-//     console.log('path:' , req.path);
-//     console.log('method:' , req.method);
-//     next();
-// });
-// app.use((req,res , next)=> {
-//     console.log('in the next middleware');
-//     next();
-// });
-
-    // getting response in express 
+// logger package 
 app.use(morgan('dev'));
 
+// mongoose and mongo sandbox routes 
+// app.get('/add-blog', (req,res)=>{
+//     const blog = new Blog({
+//         title: 'This is a new Blog',
+//         snippet: 'A new Blog',
+//         body: 'i have a new blog to talk about'
+//     });
+//     blog.save()
+//     .then((result)=>{
+//         res.send(result);
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     });
+// })
+
+// // to get all the blogs 
+// app.get('/all-blogs', (req,res)=>{
+//     Blog.find()
+//     .then((result)=>{
+//         res.send(result);
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     });
+// })
+
+// // get a single blog 
+// app.get('/single-blog' , (req,res)=>{
+//     Blog.findById('65c60d9d4a0c70639cbc011f')
+//     .then((result)=>{
+//         res.send(result)
+//     })
+//     .catch((err)=>{
+//         console.log(err)
+//     });
+// })
+
+
+// routes 
 app.use((req,res,next)=>{
-    console.log('Checkking routes');
+    console.log('Checking routes');
     next();
 })
 
