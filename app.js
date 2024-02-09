@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 // express app 
 const app = express();
 // importing model 
-const Blog = require('./models/blogs')
+const Blog = require('./models/blogs');
+const { result } = require('lodash');
 
 // mongodb connect config 
 const dbURI = 'mongodb+srv://nodeninja:nodeninja12345@cluster0.zs6k5gt.mongodb.net/'
@@ -66,18 +67,31 @@ app.use((req,res,next)=>{
 })
 
     app.get('/' , (req , res ) => {
-
+    res.redirect('/blogs');
     // using ejs to export coontent dynamically 
-    const blogs = [
-        {title : 'David finds cars' , snippet: 'lorem i dont know you dont know'},
-        {title : 'David loves cars' , snippet: 'lorem i dont know you dont know'},
-        {title : 'David drives cars' , snippet: 'lorem i dont know you dont know'},
-    ];
-    res.render('index' , {title : 'Home page' , blogs}); 
+    // const blogs = [
+    //     {title : 'David finds cars' , snippet: 'lorem i dont know you dont know'},
+    //     {title : 'David loves cars' , snippet: 'lorem i dont know you dont know'},
+    //     {title : 'David drives cars' , snippet: 'lorem i dont know you dont know'},
+    // ];
+    // res.render('index' , {title : 'Home page' , blogs}); 
 });
+
 app.get('/about' , (req,res)=> {
     res.render('about' , {title : 'About page'})
 });
+
+// Blog routes 
+app.get('/blogs', (req,res)=>{
+    Blog.find().sort({createdAt: -1})
+    .then((result)=>{
+        res.render('index' , {title: 'All Blogs' , blogs: result})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+ 
 app.get('/blogs/create' , (req , res)=> {
     res.render('create' , {title: 'Creat a new blog'})
 }); 
