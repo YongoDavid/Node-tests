@@ -18,6 +18,8 @@ mongoose.connect(dbURI)
 app.set('view engine' , 'ejs');
 // MIDDLEWARE & STATIC FILES 
 app.use(express.static('public'));
+// middleware for form data 
+app.use(express.urlencoded({extended: true}));
 // logger package 
 app.use(morgan('dev'));
 
@@ -90,6 +92,17 @@ app.get('/blogs', (req,res)=>{
     .catch((err)=>{
         console.log(err);
     })
+})
+app.post('/blogs',(req,res)=>{
+    const blog = new Blog(req.body);
+    
+    blog.save()
+        .then((result)=>{
+            res.redirect('/blogs');
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
 })
  
 app.get('/blogs/create' , (req , res)=> {
