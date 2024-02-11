@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 // importing model 
 const Blog = require('./models/blogs');
-const { result } = require('lodash');
+// const { result } = require('lodash');
 
 // mongodb connect config 
 const dbURI = 'mongodb+srv://nodeninja:nodeninja12345@cluster0.zs6k5gt.mongodb.net/'
@@ -64,7 +64,7 @@ app.use(morgan('dev'));
 
 // routes 
 app.use((req,res,next)=>{
-    console.log('Checking routes');
+    console.log('Checking routes')
     next();
 })
 
@@ -103,6 +103,16 @@ app.post('/blogs',(req,res)=>{
         .catch((err)=>{
             console.log(err);
         })
+})
+app.get('/blogs/:id',(req,res)=>{
+    const id = req.params.id
+    Blog.findById(id)
+    .then(result =>{
+        res.render('details' , {body: result , title: 'Blog  Detials'})
+    })
+    .catch(err => {
+        console.log(err)
+    })
 })
  
 app.get('/blogs/create' , (req , res)=> {
