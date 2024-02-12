@@ -93,6 +93,7 @@ app.get('/blogs', (req,res)=>{
         console.log(err);
     })
 })
+// creating a new instance for new data and saving to database 
 app.post('/blogs',(req,res)=>{
     const blog = new Blog(req.body);
     
@@ -104,11 +105,12 @@ app.post('/blogs',(req,res)=>{
             console.log(err);
         })
 })
+
 app.get('/blogs/:id',(req,res)=>{
-    const id = req.params.id
+    const id = req.params.id;
     Blog.findById(id)
     .then(result =>{
-        res.render('details' , {body: result , title: 'Blog  Detials'})
+        res.render('details' , {blog: result , title: 'Blog  Detials'})
     })
     .catch(err => {
         console.log(err)
