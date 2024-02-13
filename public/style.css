@@ -70,7 +70,7 @@ h3{
 }
 .delete{
   position: absolute;
-  top: 0;
+  top: 25%;
   right: 0;
   /* left: 0em; */
   border-radius: 50%;
