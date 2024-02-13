@@ -4,8 +4,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 // express app 
 const app = express();
-// importing model 
-const Blog = require('./models/blogs');
+// import blog router 
+const blogRoutes = require('./Routes/blogRoutes');
 // const { result } = require('lodash');
 
 // mongodb connect config 
@@ -67,7 +67,6 @@ app.use((req,res,next)=>{
     console.log('Checking routes')
     next();
 })
-
     app.get('/' , (req , res ) => {
     res.redirect('/blogs');
     // using ejs to export coontent dynamically 
@@ -78,52 +77,18 @@ app.use((req,res,next)=>{
     // ];
     // res.render('index' , {title : 'Home page' , blogs}); 
 });
-
 app.get('/about' , (req,res)=> {
     res.render('about' , {title : 'About page'})
 });
+// blog routes 
+// app.use('/blogs' , blogRoutes)
+// or 
+app.use(blogRoutes)
 
-// Blog routes 
-app.get('/blogs', (req,res)=>{
-    Blog.find().sort({createdAt: -1})
-    .then((result)=>{
-        res.render('index' , {title: 'All Blogs' , blogs: result})
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
-// creating a new instance for new data and saving to database 
-app.post('/blogs',(req,res)=>{
-    const blog = new Blog(req.body);
-    
-    blog.save()
-        .then((result)=>{
-            res.redirect('/blogs');
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-})
-
-app.get('/blogs/:id',(req,res)=>{
-    const id = req.params.id;
-    Blog.findById(id)
-    .then(result =>{
-        res.render('details' , {blog: result , title: 'Blog  Detials'})
-    })
-    .catch(err => {
-        console.log(err)
-    })
-})
- 
-app.get('/blogs/create' , (req , res)=> {
-    res.render('create' , {title: 'Creat a new blog'})
+// redirects 
+app.get('/about-us' , (req,res)=>{
+    res.redirect('about')
 }); 
-// // redirects 
-// app.get('/about-us' , (req,res)=>{
-//     res.redirect('about')
-// }); 
 app.use((req,res)=>{
     res.status(404).render('404' , {title : "Error"})
 }); 
