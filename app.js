@@ -83,7 +83,7 @@ app.get('/about' , (req,res)=> {
 // blog routes 
 // app.use('/blogs' , blogRoutes)
 // or 
-app.use(blogRoutes)
+app.use(blogRoutes);
 
 // redirects 
 app.get('/about-us' , (req,res)=>{

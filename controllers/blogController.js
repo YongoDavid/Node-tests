@@ -9,7 +9,7 @@ const blog_index = (req,res) =>{
     .catch((err)=>{
         console.log(err);
     })
-}
+};
 
 // get a particular blog by its id 
 const blog_detials = (req,res) => {
@@ -22,11 +22,11 @@ const blog_detials = (req,res) => {
     .catch(err => {
         res.status(404).render('404' , {title: 'Blog not found'})
     })
-}
+};
 
 const blog_create_get = (req,res) =>{
     res.render('create' , {title: 'Create a new blog'})
-}
+};
 
 // creating a new instance for new data and saving to database 
 const blog_create_post = (req,res) =>{
@@ -39,7 +39,7 @@ const blog_create_post = (req,res) =>{
         .catch((err)=>{
             console.log(err);
         })
-}
+};
 
 // deletle a particular blog by its id 
 const blog_delete = (req,res) =>{
@@ -52,7 +52,7 @@ const blog_delete = (req,res) =>{
     .catch((err)=>{
         console.log(err)
     })
-}
+};
 
 
 module.exports ={
