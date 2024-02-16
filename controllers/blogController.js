@@ -27,20 +27,18 @@ const blog_detials = (req,res) => {
 const blog_create_get = (req,res) =>{
     res.render('create' , {title: 'Create a new blog'})
 };
-
 // creating a new instance for new data and saving to database 
 const blog_create_post = (req,res) =>{
     const blog = new Blog(req.body);
     
     blog.save()
         .then((result)=>{
-            res.redirect('/blogs');
+            res.redirect('/blogs' , {blogs: result , title: 'Blogs here'});
         })
         .catch((err)=>{
             console.log(err);
         })
 };
-
 // deletle a particular blog by its id 
 const blog_delete = (req,res) =>{
     const id = req.params.id;
@@ -53,7 +51,6 @@ const blog_delete = (req,res) =>{
         console.log(err)
     })
 };
-
 
 module.exports ={
     blog_index,

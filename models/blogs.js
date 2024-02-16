@@ -21,5 +21,4 @@ const blogSchema = new Schema({
 // This is how you create your model around the schema 
 const Blog = mongoose.model('Blog' , blogSchema)
 // Export the model to be able to use anyhere is your code 
-
 module.exports = Blog;
