@@ -33,7 +33,7 @@ const blog_create_post = (req,res) =>{
     
     blog.save()
         .then((result)=>{
-            res.redirect('/blogs' , {blogs: result , title: 'Blogs here'});
+            res.redirect('/blogs');
         })
         .catch((err)=>{
             console.log(err);
