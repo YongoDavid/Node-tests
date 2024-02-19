@@ -1,3 +1,7 @@
+
+// MIGHT END UP USING THIS AS MY SAFFETY AID PROJECT 
+// JUST NEED TO TAILOR IT TO MYY TASTE 
+
 const express = require('express');
 const morgan = require('morgan');
 // connecting to mongoDB using mongoose 
